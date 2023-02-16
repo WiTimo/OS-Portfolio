@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import LoginPage from './pages/LoginPage.page'
 import Desktop from './pages/Desktop.page'
 import gsap from 'gsap'
+import MobilePlaceholder from './pages/MobilePlaceholder.page'
 
 export default function App() {
 
   const [booted, setBooted] = useState<boolean>(false)
   const [contentLoaded, setContentLoaded] = useState<boolean>(false);
+  const [mobile, setMobile] = useState<boolean>(false);
 
   useEffect(() => {
     if(!booted) return;
@@ -22,14 +24,28 @@ export default function App() {
     },750)
   },[booted])
 
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if(window.innerWidth <= 650) setMobile(true);
+      else setMobile(false);
+    })
+  },[])
+
   return (
     <div className="App">
-      <div className='main-login-page' style={{opacity: "1", zIndex: "5"}}>
-        <LoginPage setBooted={setBooted} contentLoaded={contentLoaded}/>
-      </div>
-      <div className='main-desktop' style={{display: "none", opacity: "0", zIndex: "10"}}>
-        <Desktop setContentLoaded={setContentLoaded}/>
-      </div>
+      {!mobile ? 
+      <>
+        <div className='main-login-page' style={{opacity: "1", zIndex: "5"}}>
+          <LoginPage setBooted={setBooted} contentLoaded={contentLoaded}/>
+        </div>
+        <div className='main-desktop' style={{display: "none", opacity: "0", zIndex: "10"}}>
+          <Desktop setContentLoaded={setContentLoaded}/>
+        </div>
+      </>  
+    : 
+    <MobilePlaceholder />
+    }
+      
     </div>
   )
 }

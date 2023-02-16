@@ -1,0 +1,26 @@
+.taskbar-content-container {
+  height: 100%;
+  width: 94%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .taskbar-content-icons {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes taskbar-icon-click {
+    0% {
+      padding: 15%;
+    }
+    50% {
+      padding: 22.5%;
+    }
+    100% {
+      padding: 15%;
+    }
+  }
+}

@@ -1,82 +1,11 @@
 .taskbar-container {
-  height: 7vh;
+  height: 5vh;
   width: 100%;
   position: absolute;
   bottom: 0;
   background: rgba($color: black, $alpha: 0.75);
   border-top: solid black 1px;
   display: flex;
-  .taskbar-content-container {
-    height: 100%;
-    width: 94%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .taskbar-content-icons {
-      width: fit-content;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .taskbar-icon {
-        height: 90%;
-        aspect-ratio: 1/1;
-        padding: 15%;
-        &:hover {
-          background: rgba($color: white, $alpha: 0.2);
-          border-radius: 5px;
-        }
-      }
-    }
-
-    @keyframes taskbar-icon-click {
-      0% {
-        padding: 15%;
-      }
-      50% {
-        padding: 22.5%;
-      }
-      100% {
-        padding: 15%;
-      }
-    }
-  }
-  .taskbar-clock-container {
-    height: 90%;
-    width: 6%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-direction: column;
-    margin: 0.03em;
-    margin-right: 0.5em;
-    border-radius: 10px;
-    overflow: auto;
-    span {
-      color: white;
-      font-size: 0.325rem;
-      margin-right: 1.5em;
-      user-select: none;
-    }
-    &:hover {
-      background: rgba($color: white, $alpha: 0.2);
-    }
-    .taskbar-hover-text {
-      pointer-events: none;
-      transition: 500ms;
-      opacity: 0;
-      color: white;
-      font-size: 0.325rem;
-      user-select: none;
-      position: absolute;
-      top: 0;
-      transform: translateY(-150%);
-      right: 1em;
-      height: fit-content;
-      width: fit-content;
-      border-radius: 5px;
-      padding: 0.5em;
-      background: rgba($color: black, $alpha: 0.65);
-    }
-  }
+  z-index: 10;
+  position: fixed;
 }

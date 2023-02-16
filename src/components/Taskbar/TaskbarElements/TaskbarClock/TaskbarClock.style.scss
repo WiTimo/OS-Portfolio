@@ -1,0 +1,46 @@
+.taskbar-clock-container {
+  height: 90%;
+  width: 6%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  margin: 0.03em;
+  margin-right: 0.5em;
+  border-radius: 10px;
+  overflow: auto;
+  span {
+    color: white;
+    font-size: 0.325rem;
+    margin-right: 1.5em;
+    user-select: none;
+  }
+  &:hover {
+    background: rgba($color: white, $alpha: 0.2);
+  }
+  .taskbar-hover-text {
+    pointer-events: none;
+    transition: 500ms;
+    opacity: 0;
+    color: white;
+    font-size: 0.325rem;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    transform: translateY(-150%);
+    right: 1em;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 0.5em;
+    background: rgba($color: black, $alpha: 0.65);
+  }
+  .taskbar-clock-calendar {
+    width: 17vw;
+    height: 34vh;
+    position: absolute;
+    z-index: -1;
+    bottom: 5vh;
+    right: 0;
+  }
+}
