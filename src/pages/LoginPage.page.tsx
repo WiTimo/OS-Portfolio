@@ -70,7 +70,6 @@ export default function LoginPage({setBooted, contentLoaded}: {setBooted: any, c
 
     return(
         <>
-
         <div className="booting-container" style={{opacity: loading ? "1" : "0"}}>
             <AiOutlineLoading  className="booting-loading"/>
             <span>Booting</span>

@@ -2,4 +2,15 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  .desktop-blue-drag {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    background: rgba($color: rgb(17, 150, 212), $alpha: 0.5);
+    border: solid rgb(17, 150, 212) 1px;
+    user-select: none;
+    pointer-events: none;
+  }
 }

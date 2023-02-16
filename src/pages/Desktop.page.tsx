@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import "./Desktop.style.scss"
 import test from "../assets/windowsStartBG.webp"
+import MainContent from "../components/MainContent/MainContent.component";
+import Taskbar from "../components/Taskbar/Taskbar.component";
 
 export default function Desktop({setContentLoaded}: {setContentLoaded: any}) {
 
@@ -22,7 +24,8 @@ export default function Desktop({setContentLoaded}: {setContentLoaded: any}) {
 
     return(
         <div className="desktop">
-            <h1>Desktop</h1>
+            <MainContent />
+            <Taskbar />
         </div>
     )
 }
