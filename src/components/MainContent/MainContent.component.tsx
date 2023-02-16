@@ -4,9 +4,12 @@ import {useState} from "react";
 export default function MainContent(){
 
     const [blueDragMoving, setBlueDragMoving] = useState(false);
+    const [blueDragBounding, setBlueDragBounding] = useState([]);
 
     const activateBlueDrag = (e: any) => {
         const blueDrag = document.querySelector(".desktop-blue-drag") as HTMLElement;
+        blueDragBound = blueDrag.getBoundingClientRect();
+        setBlueDragBounding([b])
         blueDrag.style.left = e.clientX + "px";
         blueDrag.style.top = e.clientY + "px";
         setBlueDragMoving(true);
