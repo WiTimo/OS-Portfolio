@@ -1,0 +1,66 @@
+.google-input-container {
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  left: 50%;
+  top: 50%;
+  .google-input-action-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5em;
+    .google-action-button {
+      color: white;
+      font-size: 1rem;
+      padding: 0.2rem;
+      border-radius: 100%;
+      &:hover {
+        background-color: #1b1b1b;
+      }
+    }
+  }
+  .google-input-button {
+    color: white;
+    font-size: 0.7em;
+    &:hover {
+      color: black;
+    }
+  }
+  .google-input-home-button {
+    margin-right: 1em;
+    margin-left: -1em;
+  }
+  .google-input {
+    width: 80%;
+    height: 50%;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 0.5em;
+    font-size: 0.4em;
+    background-color: #2b2b2b;
+    color: rgba($color: white, $alpha: 0.6);
+    &:focus {
+      color: white;
+      background-color: #1b1b1b;
+    }
+  }
+}
+
+.google-frame-container {
+  height: 95%;
+  width: 100%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  .google-frame {
+    height: 100%;
+    width: 100%;
+    outline: none;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}

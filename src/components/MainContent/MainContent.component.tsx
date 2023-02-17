@@ -73,7 +73,6 @@ export default function MainContent(){
 
     const deactivateBlueDrag = () => {
         setBlueDragMoving(false);
-        console.log("out")
         const blueDrag = document.querySelector(".desktop-blue-drag") as HTMLElement;
         blueDrag.style.display = "none";
         blueDrag.style.removeProperty("width")

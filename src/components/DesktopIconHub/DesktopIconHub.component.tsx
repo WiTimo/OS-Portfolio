@@ -1,10 +1,11 @@
 import StdProgramm from "../Programms/StdProgramm.component";
 import "./DesktopIconHub.style.scss";
-import GoogleChrome from "./DesktopIcons/GoogleChrome.icon";
-import {useEffect} from "react";
+import GoogleChromeIcon from "./DesktopIcons/GoogleChrome.icon";
+import {useEffect, useState} from "react";
 
 export default function DesktopIconHub({blueDragMoving}: {blueDragMoving: boolean}){
 
+    const [openedProgramms, setOpenedProgramms] = useState<string[]>([]);
 
     useEffect(() => {
         const icons  = document.querySelectorAll(".desktop-icon-container");
@@ -31,10 +32,19 @@ export default function DesktopIconHub({blueDragMoving}: {blueDragMoving: boolea
         })
     },[blueDragMoving])
 
+    const openProgramm = (programm: string) => {
+        switch(programm){
+            case "googleChrome": {
+                if(openedProgramms.includes("googleChrome")) return;
+                setOpenedProgramms([...openedProgramms, "googleChrome"]);
+            }
+        }
+    }
+
     return(
         <div className="desktop-icon-hub-container">
-            <GoogleChrome />
-            <StdProgramm />
+            <GoogleChromeIcon openProgramm={openProgramm}/>
+            <StdProgramm openedProgramms={openedProgramms} setOpenedProgramms={setOpenedProgramms} />
         </div>
     )
 }
