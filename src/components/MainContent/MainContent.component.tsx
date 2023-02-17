@@ -1,5 +1,6 @@
 import "./MainContent.style.scss";
 import {useState} from "react";
+import DesktopIconHub from "../DesktopIconHub/DesktopIconHub.component";
 
 export default function MainContent(){
 
@@ -72,15 +73,19 @@ export default function MainContent(){
 
     const deactivateBlueDrag = () => {
         setBlueDragMoving(false);
+        console.log("out")
         const blueDrag = document.querySelector(".desktop-blue-drag") as HTMLElement;
         blueDrag.style.display = "none";
-        blueDrag.style.width = "0";
-        blueDrag.style.height = "0";
+        blueDrag.style.removeProperty("width")
+        blueDrag.style.removeProperty("height")
+        blueDrag.style.left = window.innerWidth + "px";
+        blueDrag.style.top = window.innerHeight + "px";
     }
 
     return(
         <div className="desktop-main-container" onMouseDown={(e) => activateBlueDrag(e)} onMouseMove={(e) => moveBlueDrag(e)} onMouseUp={deactivateBlueDrag}>
             <div className="desktop-blue-drag" />
+            <DesktopIconHub blueDragMoving={blueDragMoving}/>
         </div>
     )
 }

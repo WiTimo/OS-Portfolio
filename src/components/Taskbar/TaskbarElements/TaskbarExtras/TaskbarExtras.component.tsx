@@ -46,7 +46,7 @@ export default function TaskbarExtras({volume, setVolume}: {volume: number, setV
         if(activeElements.current[index]){
             activeElements.current[index] = false;
             element.style.background = "";
-            child.style.color = "white";
+            child.style.color = "rgba(255,255,255,0.55)";
         }else{
             activeElements.current[index] = true;
             element.style.background = "#6cbcee";

@@ -1,0 +1,25 @@
+.desktop-icon-container {
+  height: 10vh;
+  width: 17.5vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+  .desktop-icon {
+    height: 8vh;
+    width: 8vh;
+  }
+  .desktop-icon-name {
+    color: white;
+    font-size: 1.5vh;
+    width: 120%;
+    text-align: center;
+  }
+  &:hover {
+    background: rgba($color: white, $alpha: 0.3);
+  }
+}
+.desktop-icon-active {
+  background: rgba($color: white, $alpha: 0.3);
+}

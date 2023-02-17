@@ -48,6 +48,7 @@ export default function LoginPage({setBooted, contentLoaded}: {setBooted: any, c
     }
 
     const startOS = () => {
+        document.querySelector(".App")?.requestFullscreen();
         setStarting(true)
         setTimeout(() => {
             if(contentLoaded) setBooted(true)
