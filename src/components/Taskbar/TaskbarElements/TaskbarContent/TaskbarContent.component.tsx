@@ -6,6 +6,7 @@ import googleChromeLogo from "../../../../assets/GoogleChromeIcon.png";
 import soundcloudLogo from "../../../../assets/SoundcloudIcon.png";
 import webStructLogo from "../../../../assets/WebStructIcon.png";
 import VsCodeLogo from "../../../../assets/VsCodeIcon.png";
+import explorerLogo from "../../../../assets/ExplorerIcon.png";
 import gsap from "gsap"
 import { OpenedProgrammsContext } from "../../../../pages/Desktop.page";
 
@@ -21,6 +22,12 @@ export default function TaskbarContent(){
         setTimeout(() => {
             element.style.animation = "";
         },400)
+        const allProgramms = document.querySelectorAll(".std-programm-container") as NodeListOf<HTMLElement>;
+        allProgramms.forEach(programm => {
+            programm.style.zIndex = "1";
+        })
+        const currentProgramm = document.querySelector(`.std-${icon}-container`) as HTMLElement;
+        if(currentProgramm) currentProgramm.style.zIndex = "5";
 
         switch(icon){
             case "home": {
@@ -64,6 +71,10 @@ export default function TaskbarContent(){
                         }
                         case "vscode": {
                             activeProgramm = VsCodeLogo;
+                            break;
+                        }
+                        case "explorer": {
+                            activeProgramm = explorerLogo;
                             break;
                         }
                     }

@@ -6,6 +6,7 @@ import { OpenedProgrammsContext } from "../../pages/Desktop.page";
 import SoundcloudIcon from "./DesktopIcons/Soundcloud.icon";
 import WebstructIcon from "./DesktopIcons/WebStruct.icon";
 import VsCodeIcon from "./DesktopIcons/VsCode.icon";
+import ExplorerIcon from "./DesktopIcons/Explorer.icon";
 
 export default function DesktopIconHub({blueDragMoving}: {blueDragMoving: boolean}){
 
@@ -16,6 +17,9 @@ export default function DesktopIconHub({blueDragMoving}: {blueDragMoving: boolea
         icons.forEach(icon => {
             icon.addEventListener("click", (e) => {
                 e.stopPropagation();
+                icons.forEach(newicon => {
+                    newicon.classList.remove("desktop-icon-active");
+                })
                 icon.classList.add("desktop-icon-active");
             })
             document.addEventListener("click", () => {
@@ -47,6 +51,7 @@ export default function DesktopIconHub({blueDragMoving}: {blueDragMoving: boolea
             <SoundcloudIcon openProgramm={openProgramm}/>
             <WebstructIcon openProgramm={openProgramm}/>
             <VsCodeIcon openProgramm={openProgramm}/>
+            <ExplorerIcon openProgramm={openProgramm}/>
             <StdProgramm openedProgramms={openedProgrammsObject.openedProgramms} setOpenedProgramms={openedProgrammsObject.setOpenedProgramms} />
         </div>
     )

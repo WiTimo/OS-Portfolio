@@ -5,9 +5,9 @@
   z-index: 5;
   position: absolute;
   user-select: none;
-  left: 20%;
-  bottom: 15%;
   opacity: 0;
+  left: 20%;
+  top: 10%;
   pointer-events: auto;
   transition: height 250ms, width 250ms;
   scale: 0.8;
@@ -68,20 +68,54 @@
     }
   }
   .std-programm-content {
-    height: 75vh;
+    height: 95%;
     width: 100%;
     background-color: #4b4b4b;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
+
+  //-----------------------------------------------------RESIZE---------------------------------------------------------------//
+  .std-programm-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: all;
+    z-index: 100;
+  }
+  .std-programm-resize-right {
+    height: 100%;
+    width: 0.35vw;
+    &:hover {
+      cursor: e-resize;
+    }
+  }
+  .std-programm-resize-bottom {
+    height: 0.35vw;
+    width: 100%;
+    &:hover {
+      cursor: s-resize;
+    }
+  }
+  .std-programm-resize-corner {
+    height: 2vh;
+    width: 2vh;
+    z-index: 110;
+    &:hover {
+      cursor: se-resize;
+    }
+  }
 }
+
+//-----------------------------------------------------MAXIMIZED---------------------------------------------------------------//
 .std-programm-container-maximized {
-  width: 100vw;
+  width: 100vw !important;
+  height: 90vh !important;
   position: absolute;
   left: 0;
   top: 0;
   .std-programm-content {
-    height: 100vh;
+    height: 90vh;
   }
 }
 

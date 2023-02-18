@@ -4,7 +4,7 @@ import GoogleChromeHeader from "./GoogleChrome/GoogleChromeHeader.component";
 import {VscChromeMinimize, VscChromeMaximize, VscClose} from "react-icons/vsc"
 import GoogleChromeContent from "./GoogleChrome/GoogleChromeContent";
 import gsap from "gsap";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import { MinimizedContext } from "../../pages/Desktop.page";
 import SoundcloudContent from "./Soundcloud/SoundcloudContent.component";
 import SoundcloudHeader from "./Soundcloud/SoundcloudHeader.component";
@@ -12,6 +12,8 @@ import WebStructContent from "./WebStruct/WebstructContent.component";
 import WebStructHeader from "./WebStruct/WebstructHeader.component";
 import VsCodeContent from "./VsCode/VsCodeContent.component";
 import VsCodeHeader from "./VsCode/VsCodeHeader.component";
+import ExplorerContent from "./Explorer/ExplorerContent.component";
+import ExplorerHeader from "./Explorer/ExplorerHeader.component";
 
 export default function StdProgramm({openedProgramms, setOpenedProgramms} : {openedProgramms: string[], setOpenedProgramms: Function}){
 
@@ -83,6 +85,57 @@ export default function StdProgramm({openedProgramms, setOpenedProgramms} : {ope
     //Soundcloud
     const [inPlaylist, setInPlaylist] = useState<boolean>(false);
 
+
+    //Resize
+    const capturePointerDown = (e: any, name: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.target.setPointerCapture(e.pointerId);
+        const programmContainer = document.querySelector(`.std-${name}-container`) as HTMLElement;
+        const styles = window.getComputedStyle(programmContainer);
+        programmContainer.style.width = styles.width;
+        programmContainer.style.height = styles.height;
+        programmContainer.style.transition = "none";
+    };
+
+    const capturePointerMove = (e: any, name: string, movement: string) => {
+        if(!e.target.hasPointerCapture(e.pointerId)) return;
+        const container = document.querySelector(`.std-${name}-container`) as HTMLElement;
+        switch(movement){
+            case "right": {
+                container.style.width = `${e.clientX - container.getBoundingClientRect().left}px`;
+                break;
+            }
+            case "bottom": {
+                container.style.height = `${e.clientY - container.getBoundingClientRect().top}px`; 
+                break;
+            }
+            case "right-corner": {
+                container.style.width = `${e.clientX - container.getBoundingClientRect().left}px`;
+                container.style.height = `${e.clientY - container.getBoundingClientRect().top}px`;
+                break;
+            }
+        
+        }
+    }
+
+    const capturePointerUp = (e: any, name: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.target.releasePointerCapture(e.pointerId);
+        const programmContainer = document.querySelector(`.std-${name}-container`) as HTMLElement;
+        programmContainer.style.transition = "height 250ms, width 250ms";
+    };
+
+    const [resizeSize, setResizeSize] = useState<Object>({width: 200, height: 200});
+
+    const ResizeHandler = (e: any, direction: any, ref: any, delta: any) => {
+        setResizeSize({
+            width: ref.width,
+            height: ref.height,
+        });
+    }
+
     return(
         <>
        {openedProgramms.map((name) => {
@@ -95,6 +148,7 @@ export default function StdProgramm({openedProgramms, setOpenedProgramms} : {ope
                             name === "soundcloud" ? <SoundcloudHeader setInPlaylist={setInPlaylist}/>:
                             name === "webstruct" ? <WebStructHeader />:
                             name === "vscode" ? <VsCodeHeader />:
+                            name === "explorer" ? <ExplorerHeader />:
                             <></>}
                             
                             <div className="std-programm-header-actions">
@@ -108,8 +162,21 @@ export default function StdProgramm({openedProgramms, setOpenedProgramms} : {ope
                             name === "soundcloud" ? <SoundcloudContent inPlaylist={inPlaylist} setInPlaylist={setInPlaylist}/>:
                             name === "webstruct" ? <WebStructContent />:
                             name === "vscode" ? <VsCodeContent />:
+                            name === "explorer" ? <ExplorerContent />:
                              <></>}
                         </div>
+                        <div className={`std-programm-resize std-programm-resize-right`} 
+                        onPointerDown={(e) => capturePointerDown(e, name)}
+                        onPointerUp={(e) => capturePointerUp(e, name)}
+                        onPointerMove={(e) => capturePointerMove(e, name, "right")}/>
+                        <div className={`std-programm-resize std-programm-resize-bottom`}
+                        onPointerDown={(e) => capturePointerDown(e, name)}
+                        onPointerUp={(e) => capturePointerUp(e, name)}
+                        onPointerMove={(e) => capturePointerMove(e, name, "bottom")} />
+                        <div className={`std-programm-resize std-programm-resize-corner`}
+                        onPointerDown={(e) => capturePointerDown(e, name)}
+                        onPointerUp={(e) => capturePointerUp(e, name)}
+                        onPointerMove={(e) => capturePointerMove(e, name, "right-corner")} />
                     </div>    
                 </Draggable>
             )

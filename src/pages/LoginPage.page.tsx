@@ -5,7 +5,6 @@ import gsap from "gsap";
 import BGImage from "../assets/windowsStartBG.webp"
 import {CiUser} from "react-icons/ci"
 import {AiOutlineLoading} from "react-icons/ai"
-import F11Button from "../assets/f11-button-icon.svg";
 
 export default function LoginPage({setBooted, contentLoaded}: {setBooted: any, contentLoaded: boolean}) {
 
@@ -95,7 +94,6 @@ export default function LoginPage({setBooted, contentLoaded}: {setBooted: any, c
                 }
             </div>
         </div>
-
         </>
     )
 }
