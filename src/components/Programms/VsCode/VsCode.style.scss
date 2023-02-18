@@ -1,0 +1,11 @@
+.vscode-content-container {
+  height: 100%;
+  width: 100%;
+  .vscode-frame {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}

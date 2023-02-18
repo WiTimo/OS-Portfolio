@@ -1,10 +1,22 @@
 import "./TaskbarContent.style.scss";
 import windowsLogo from "../../../../assets/windowsLogo.webp";
+import { useContext } from "react";
+import { MinimizedContext } from "../../../../pages/Desktop.page"
+import googleChromeLogo from "../../../../assets/GoogleChromeIcon.png";
+import soundcloudLogo from "../../../../assets/SoundcloudIcon.png";
+import webStructLogo from "../../../../assets/WebStructIcon.png";
+import VsCodeLogo from "../../../../assets/VsCodeIcon.png";
+import gsap from "gsap"
+import { OpenedProgrammsContext } from "../../../../pages/Desktop.page";
 
 export default function TaskbarContent(){
 
+    const minimizedArray = useContext(MinimizedContext);
+    const openedProgrammsOptions = useContext(OpenedProgrammsContext);
+
     const iconClicked = (icon: string, e: any) => {
-        const element = e.target as HTMLElement;
+        let element = document.querySelector(`.taskbar-${icon}-icon`) as HTMLElement;
+        if(!element) element = e.target as HTMLElement;
         element.style.animation = "taskbar-icon-click 0.4s ease-out";
         setTimeout(() => {
             element.style.animation = "";
@@ -12,15 +24,58 @@ export default function TaskbarContent(){
 
         switch(icon){
             case "home": {
-                console.log("home")
+                console.log("home");
+                break;
+            }
+            default: {
+                showProgramm(icon);
+                break;
             }
         }
+    }
+
+    const showProgramm = (programm: string) => {
+        const miniProgramms = [...minimizedArray.minimizedProgramms];
+        miniProgramms.splice(miniProgramms.indexOf(programm), 1);
+        minimizedArray.setMinimizedProgramms(miniProgramms);
+        const programmContainer = document.querySelector(`.std-${programm}-container`) as HTMLElement;
+        gsap.to(programmContainer, {duration: 0.25, scale: 1, ease: "power2.inOut"});
+        gsap.to(programmContainer, {duration: 0.45, bottom: "15%", ease: "power2.inOut"});
     }
 
     return(
         <div className="taskbar-content-container">
             <div className="taskbar-content-icons">
                 <img className="taskbar-icon taskbar-windows-logo" src={windowsLogo} onClick={(e) => iconClicked("home", e)}/>
+                {openedProgrammsOptions.openedProgramms.map((programm: string) => {
+                    let activeProgramm = "";
+                    switch(programm){
+                        case "googleChrome": {
+                            activeProgramm = googleChromeLogo;
+                            break;
+                        }
+                        case "soundcloud": {
+                            activeProgramm = soundcloudLogo;
+                            break;
+                        }
+                        case "webstruct": {
+                            activeProgramm = webStructLogo;
+                            break;
+                        }
+                        case "vscode": {
+                            activeProgramm = VsCodeLogo;
+                            break;
+                        }
+                    }
+                    const minArray = [...minimizedArray.minimizedProgramms];
+                    return(
+                        <div className={`taskbar-icon taskbar-programm-icon taskbar-${programm}-icon 
+                        ${minArray.includes(programm) ? `taskbar-programm-icon-minimized` : ""} taskbar-${programm}-logo`}
+                         onClick={(e) => iconClicked(programm, e)} key={programm} >
+                            <img src={activeProgramm} key={programm} />
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

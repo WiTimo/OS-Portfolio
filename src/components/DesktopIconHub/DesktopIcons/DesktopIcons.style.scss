@@ -1,18 +1,21 @@
 .desktop-icon-container {
   height: 10vh;
-  width: 17.5vh;
+  width: 13vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
   user-select: none;
+  padding-top: 0.3em;
+  margin-top: 0.3em;
+  padding-bottom: 0.2em;
   .desktop-icon {
-    height: 8vh;
-    width: 8vh;
+    height: 6vh;
+    width: 6vh;
   }
   .desktop-icon-name {
     color: white;
-    font-size: 1.5vh;
+    font-size: 1.2vh;
     width: 120%;
     text-align: center;
   }

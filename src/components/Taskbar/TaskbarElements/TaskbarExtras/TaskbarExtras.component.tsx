@@ -37,7 +37,9 @@ export default function TaskbarExtras({volume, setVolume}: {volume: number, setV
         document.querySelectorAll(".taskbar-mini-setting").forEach((element, idx) => {
             const newElement = element as HTMLElement;
             if(newElement.classList.contains("taskbar-mini-settings-wlan")) return;
-            newElement.addEventListener("click", () => changeAppearance(newElement, idx))
+            newElement.addEventListener("click", (e) =>{
+                changeAppearance(newElement, idx)
+            })
         })
     },[])
 

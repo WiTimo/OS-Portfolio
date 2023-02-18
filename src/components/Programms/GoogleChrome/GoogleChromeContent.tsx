@@ -1,12 +1,14 @@
 import "./GoogleChrome.style.scss";
 import {AiOutlineHome, AiOutlineArrowRight ,AiOutlineArrowLeft} from "react-icons/ai";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {IoReloadOutline} from "react-icons/io5";
+import {VolumeContext} from "../../../pages/Desktop.page";
 
 export default function GoogleChromeContent({StdinputValue = "https://www.google.com/search?igu=1"}: {StdinputValue?: string}){
 
     const [inputValue, setInputValue] = useState<string>(StdinputValue);
     const [searchValue, setSearchValue] = useState<string>("");
+    const volumeObject = useContext(VolumeContext);
 
     const changeHandler = (e: any) => {
         setInputValue(e.target.value);
@@ -17,7 +19,8 @@ export default function GoogleChromeContent({StdinputValue = "https://www.google
         if(inputValue === "https://www.google.com/" || 
         inputValue === "https://www.google.com" || 
         inputValue === "google.com" || 
-        inputValue === "www.google.com"){
+        inputValue === "www.google.com" ||
+        inputValue === "https://google.com"){
             setInputValue("https://www.google.com/search?igu=1");
             setSearchValue("https://www.google.com/search?igu=1");
         }else{
@@ -30,8 +33,8 @@ export default function GoogleChromeContent({StdinputValue = "https://www.google
             const input = document.querySelector(".google-input") as HTMLElement;
             input.blur();
         }
-        }
     }
+}
 
     useEffect(() => {
         if(searchValue !== ""){
@@ -48,6 +51,8 @@ export default function GoogleChromeContent({StdinputValue = "https://www.google
         document.querySelector(".google-frame")?.setAttribute("src", "https://www.google.com/search?igu=1");
         setInputValue("https://www.google.com/search?igu=1");
         document.querySelector(".google-input")?.setAttribute("value", "https://www.google.com/search?igu=1");
+        setSearchValue("https://www.google.com/search?igu=1")
+        setInputValue("https://www.google.com/search?igu=1");
     }
 
     const goBack = () => {

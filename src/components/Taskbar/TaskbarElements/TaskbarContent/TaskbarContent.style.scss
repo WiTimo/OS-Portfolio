@@ -5,22 +5,61 @@
   justify-content: center;
   align-items: center;
   .taskbar-content-icons {
-    width: fit-content;
+    width: max-content;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    .taskbar-icon {
+      transition: scale 250ms, opacity 250ms;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 1vh;
+      position: relative;
+      img {
+        height: 100%;
+      }
+      &::after {
+        transition: 250ms;
+        content: "";
+        position: absolute;
+        width: 40%;
+        height: 7%;
+        bottom: 6%;
+        border-radius: 2000px;
+        background: lightskyblue;
+      }
+    }
+    .taskbar-programm-icon-minimized {
+      &::after {
+        width: 20%;
+        background: rgba($color: lightskyblue, $alpha: 0.65);
+      }
+    }
   }
 
   @keyframes taskbar-icon-click {
     0% {
-      padding: 15%;
+      padding: 1vh;
     }
     50% {
-      padding: 22.5%;
+      padding: 1.3vh;
     }
     100% {
-      padding: 15%;
+      padding: 1vh;
     }
+  }
+}
+
+@keyframes jumpOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
   }
 }

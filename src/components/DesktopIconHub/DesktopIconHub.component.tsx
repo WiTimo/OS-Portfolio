@@ -1,11 +1,15 @@
 import StdProgramm from "../Programms/StdProgramm.component";
 import "./DesktopIconHub.style.scss";
 import GoogleChromeIcon from "./DesktopIcons/GoogleChrome.icon";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
+import { OpenedProgrammsContext } from "../../pages/Desktop.page";
+import SoundcloudIcon from "./DesktopIcons/Soundcloud.icon";
+import WebstructIcon from "./DesktopIcons/WebStruct.icon";
+import VsCodeIcon from "./DesktopIcons/VsCode.icon";
 
 export default function DesktopIconHub({blueDragMoving}: {blueDragMoving: boolean}){
 
-    const [openedProgramms, setOpenedProgramms] = useState<string[]>([]);
+    const openedProgrammsObject = useContext(OpenedProgrammsContext);
 
     useEffect(() => {
         const icons  = document.querySelectorAll(".desktop-icon-container");
@@ -33,18 +37,17 @@ export default function DesktopIconHub({blueDragMoving}: {blueDragMoving: boolea
     },[blueDragMoving])
 
     const openProgramm = (programm: string) => {
-        switch(programm){
-            case "googleChrome": {
-                if(openedProgramms.includes("googleChrome")) return;
-                setOpenedProgramms([...openedProgramms, "googleChrome"]);
-            }
-        }
+        if(openedProgrammsObject.openedProgramms.includes(programm)) return;
+        openedProgrammsObject.setOpenedProgramms([...openedProgrammsObject.openedProgramms, programm]);
     }
 
     return(
         <div className="desktop-icon-hub-container">
             <GoogleChromeIcon openProgramm={openProgramm}/>
-            <StdProgramm openedProgramms={openedProgramms} setOpenedProgramms={setOpenedProgramms} />
+            <SoundcloudIcon openProgramm={openProgramm}/>
+            <WebstructIcon openProgramm={openProgramm}/>
+            <VsCodeIcon openProgramm={openProgramm}/>
+            <StdProgramm openedProgramms={openedProgrammsObject.openedProgramms} setOpenedProgramms={openedProgrammsObject.setOpenedProgramms} />
         </div>
     )
 }
