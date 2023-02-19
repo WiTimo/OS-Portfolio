@@ -54,7 +54,7 @@ export default function GoogleChromeContent({StdinputValue = "https://www.google
         setSearchValue("https://www.google.com/search?igu=1")
         setInputValue("https://www.google.com/search?igu=1");
     }
-
+    
     const goBack = () => {
         document.querySelector(".google-frame")?.setAttribute("src", "https://www.google.com/search?igu=1");
         setInputValue("https://www.google.com/search?igu=1");
