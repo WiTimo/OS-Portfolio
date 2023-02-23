@@ -85,6 +85,17 @@
         border-bottom: solid rgba($color: white, $alpha: 0.2) 2px;
       }
     }
+    .explorer-content-data-header {
+      width: 80%;
+      height: 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      pointer-events: all;
+      z-index: 1;
+    }
     .explorer-content-data-container {
       height: 90%;
       width: 80%;
@@ -94,6 +105,8 @@
       gap: 1em;
       padding: 1em;
       overflow: auto;
+      position: relative;
+
       .explorer-folder-container {
         height: 13vh;
         width: 7vw;
@@ -108,6 +121,19 @@
         span {
           font-size: 0.4em;
           color: rgba($color: white, $alpha: 0.65);
+        }
+      }
+      .explorer-empty-folder {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 1em;
+        p {
+          font-size: 0.55em;
+          color: white;
         }
       }
     }

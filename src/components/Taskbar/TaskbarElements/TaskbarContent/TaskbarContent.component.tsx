@@ -47,7 +47,10 @@ export default function TaskbarContent(){
         minimizedArray.setMinimizedProgramms(miniProgramms);
         const programmContainer = document.querySelector(`.std-${programm}-container`) as HTMLElement;
         gsap.to(programmContainer, {duration: 0.25, scale: 1, ease: "power2.inOut"});
-        gsap.to(programmContainer, {duration: 0.45, bottom: "15%", ease: "power2.inOut"});
+        if(programmContainer.style.bottom)
+            gsap.to(programmContainer, {duration: 0.45, bottom: "15%", ease: "power2.inOut"});
+        else
+            gsap.to(programmContainer, {duration: 0.45, top: "7%", ease: "power2.inOut"});
     }
 
     return(

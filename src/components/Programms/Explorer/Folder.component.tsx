@@ -1,12 +1,12 @@
 import "./Explorer.style.scss";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import FolderIcon from "../../../assets/ExplorerIcons/Folder.png";
 import FileIcon from "../../../assets/ExplorerIcons/File.png"
 
 export default function Folder({content}: {content: any}){
     const [renderContent, setRenderContent] = useState<boolean>(false);
     const [emptyFolder, setEmptyFolder] = useState<boolean>(false);
-
+    const [isEmptyFolder, setIsEmptyFolder] = useState<boolean>(false);
 
     const renderContentHandler = (item: any) => {
         if(item.content.length > 0){
@@ -21,7 +21,7 @@ export default function Folder({content}: {content: any}){
 
         return(
             content.map((item: any) => {
-                    if(renderContent)return <Folder content={item.content} key={item.id}/>
+                    if(renderContent)return <Folder content={item.content} key={item.id}    />
                     if(!emptyFolder)
                     return(
                         <div className="explorer-folder-container" onDoubleClick={() => renderContentHandler(item)} key={item.id}>
@@ -32,11 +32,14 @@ export default function Folder({content}: {content: any}){
                             <span>{item.name}</span>
                         </div>
                     )
-                    else return(
-                        <div className="explorer-empty-foler" key={item.id} >
+                    else
+                    return(
+                        <div className="explorer-empty-folder" key={item.id}>
                             <p>Folder is empty</p>
                         </div>
                     )
+                        
+                    
             
             })
         )

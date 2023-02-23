@@ -45,7 +45,10 @@ export default function StdProgramm({openedProgramms, setOpenedProgramms} : {ope
         const programmContainer = document.querySelector(`.std-${name}-container`) as HTMLElement;
         programmContainer.classList.remove("std-programm-container-maximized");
         gsap.to(programmContainer, {duration: 0.25, scale: 0, ease: "power2.inOut"});
-        gsap.to(programmContainer, {duration: 0.45, bottom: "-100%", ease: "power2.inOut"});
+        if(programmContainer.style.bottom)
+            gsap.to(programmContainer, {duration: 0.45, bottom: "-100%", ease: "power2.inOut"});
+        else
+            gsap.to(programmContainer, {duration: 0.45, top: "100%", ease: "power2.inOut"});
 
         setTimeout(() => {
             if(minimizedArray.minimizedProgramms.includes(name)) return;
